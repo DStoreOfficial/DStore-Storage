@@ -58,6 +58,10 @@
                     <div class="mt-5 mb-5 text-center">
                         <h2>Produk</h2>
                     </div>
+                    <div class="mt-5">
+                        <input class="w-100 my-3" type="text" id="search" placeholder="Search Product" />
+                        <button onclick="viewProduct();" class="btn btn-primary" type="Submit" value="Search" />Search</button>
+                    </div>
                     <div class="container my-5">
                         <div class="row" id="list-procuct"></div>
                     </div>
@@ -125,70 +129,104 @@
 
         document.getElementById("year").innerHTML = new Date().getFullYear();
 
-        function productView(response)
+        function createDiv(data)
         {
 
             listProduct = document.getElementById('list-procuct');
 
+            let product = document.createElement('div');
+            product.className = 'col-md-4';
+
+            let cardDiv = document.createElement('div');
+            cardDiv.className = 'card mb-4 shadow';
+
+            let img = document.createElement('img');
+            img.src = data.img_url;
+            img.className = 'card-img-top';
+            img.alt = 'Catalog Item 3';
+            cardDiv.appendChild(img);
+
+            let cardBodyDiv = document.createElement('div');
+            cardBodyDiv.className = 'card-body p-3';
+
+            let h5 = document.createElement('h5');
+            h5.className = 'card-title';
+            h5.textContent = data.title;
+            cardBodyDiv.appendChild(h5);
+
+            let pPrice = document.createElement('p');
+            pPrice.className = 'card-text';
+            pPrice.textContent = 'Price : IDR ' + data.price;
+            cardBodyDiv.appendChild(pPrice);
+
+            let hr = document.createElement('hr');
+            cardBodyDiv.appendChild(hr);
+
+            let btn = document.createElement('a');
+            btn.className = 'btn btn-primary';
+            btn.href = 'https://wa.me/6285956599709?text=Halo%20DSTORE%2C%0A%0ASaya%20ingin%20membeli%20' + encodeURI(data.title) + '.%0AApakah%20Kuota%20ini%20tersedia%20%3F';
+            btn.target = '_blank';
+            btn.textContent = 'Beli Sekarang';
+            cardBodyDiv.appendChild(btn);
+
+            cardDiv.appendChild(cardBodyDiv);
+
+            product.appendChild(cardDiv);
+
+            listProduct.appendChild(product);
+
+        }
+
+        function productView(response)
+        {
+
+            search = document.getElementById('search').value.toLowerCase();
+
             response.forEach(function(data, index)
             {
 
-                let product = document.createElement('div');
-                product.className = 'col-md-4';
+                if (search) {
 
-                let cardDiv = document.createElement('div');
-                cardDiv.className = 'card mb-4 shadow';
+                    title = data.title.toLowerCase();
 
-                let img = document.createElement('img');
-                img.src = data.img_url;
-                img.className = 'card-img-top';
-                img.alt = 'Catalog Item 3';
-                cardDiv.appendChild(img);
+                    if (title.includes(search)) {
 
-                let cardBodyDiv = document.createElement('div');
-                cardBodyDiv.className = 'card-body p-3';
+                        createDiv(data);
 
-                let h5 = document.createElement('h5');
-                h5.className = 'card-title';
-                h5.textContent = data.title;
-                cardBodyDiv.appendChild(h5);
+                    }
 
-                let pPrice = document.createElement('p');
-                pPrice.className = 'card-text';
-                pPrice.textContent = 'Price : IDR ' + data.price;
-                cardBodyDiv.appendChild(pPrice);
+                } else {
 
-                let hr = document.createElement('hr');
-                cardBodyDiv.appendChild(hr);
+                    createDiv(data);
 
-                let btn = document.createElement('a');
-                btn.className = 'btn btn-primary';
-                btn.href = 'https://wa.me/6285956599709?text=Halo%20DSTORE%2C%0A%0ASaya%20ingin%20membeli%20' + encodeURI(data.title) + '.%0AApakah%20Kuota%20ini%20tersedia%20%3F';
-                btn.target = '_blank';
-                btn.textContent = 'Beli Sekarang';
-                cardBodyDiv.appendChild(btn);
+                }
 
-                cardDiv.appendChild(cardBodyDiv);
-
-                product.appendChild(cardDiv);
-
-
-                listProduct.appendChild(product);
+                
                 
             });
 
         }
 
-        fetch('/api/', {
+        function viewProduct()
+        {
 
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-            },
+            listProduct = document.getElementById('list-procuct');
+            listProduct.innerHTML = '';
 
-        })
-        .then(response => response.json())
-        .then(response => productView(response));
+            fetch('/api/index.json', {
+
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                },
+    
+            })
+            .then(response => response.json())
+            .then(response => productView(response));
+
+        }
+
+        viewProduct();
 
     </script>
 
