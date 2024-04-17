@@ -33,7 +33,7 @@
                         <a class="nav-link" href="#about-us">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact-us">Contact Us</a>
+                        <a class="nav-link" href="#contact">Contact Us</a>
                     </li>
                 </ul>
             </div>
@@ -50,7 +50,7 @@
         </div>
     </header>
 
-    <div class="container mb-5">
+    <div class="container">
         <div class="row">
 
             <div class="col-12 mb-5">
@@ -68,16 +68,19 @@
                 </section>
             </div>
 
-            <div class="col-12 mb-5 bg-dark text-white p-3">
+            <div class="col-12 bg-dark text-white p-3">
                 <section id="about-us">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12">
-                                <h2>About Us</h2>
-                                <p>DSTORE Official Website adalah destinasi terbaik untuk semua kebutuhan Kuota Internet Anda. Kami menawarkan berbagai pilihan untuk memenuhi kebutuhan data Anda, baik untuk browsing, streaming, atau bermain game. Tujuan kami adalah menyediakan Kuota Internet yang handal dan terjangkau untuk memastikan Anda tetap terhubung.</p>
-                                <p>Kami di DSTORE berkomitmen untuk kepuasan pelanggan. Tim kami siap memberikan layanan terbaik dan membantu Anda menemukan paket Kuota Internet yang sempurna. Kami juga menyediakan opsi pembayaran yang cepat dan aman untuk pengalaman belanja yang lancar.</p>
-                                <p>Belanjalah dengan percaya diri di DSTORE Official Website dan nikmati pengalaman belanja online yang menyenangkan untuk semua kebutuhan Kuota Internet Anda.</p>
-                                </p>
+                                <div class="mb-3">
+                                    <b>Tentang Kami</b>
+                                </div>
+                                <div class="mb-3">
+                                    <p>DSTORE Official Website adalah destinasi terbaik untuk semua kebutuhan Kuota Internet Anda. Kami menawarkan berbagai pilihan untuk memenuhi kebutuhan data Anda, baik untuk browsing, streaming, atau bermain game. Tujuan kami adalah menyediakan Kuota Internet yang handal dan terjangkau untuk memastikan Anda tetap terhubung.</p>
+                                    <p>Kami di DSTORE berkomitmen untuk kepuasan pelanggan. Tim kami siap memberikan layanan terbaik dan membantu Anda menemukan paket Kuota Internet yang sempurna. Kami juga menyediakan opsi pembayaran yang cepat dan aman untuk pengalaman belanja yang lancar.</p>
+                                    <p>Belanjalah dengan percaya diri di DSTORE Official Website dan nikmati pengalaman belanja online yang menyenangkan untuk semua kebutuhan Kuota Internet Anda.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -164,7 +167,7 @@
 
             let btn = document.createElement('a');
             btn.className = 'btn btn-primary';
-            btn.href = 'https://wa.me/6285956599709?text=Halo%20DSTORE%2C%0A%0ASaya%20ingin%20membeli%20' + encodeURI(data.title) + '.%0AApakah%20Kuota%20ini%20tersedia%20%3F';
+            btn.href = 'https://wa.me/6285956599709?text=Halo%20DSTORE%2C%0A%0ASaya%20ingin%20membeli%20' + encodeURI(data.title) + '.%0AApakah%20ini%20tersedia%20%3F';
             btn.target = '_blank';
             btn.textContent = 'Beli Sekarang';
             cardBodyDiv.appendChild(btn);
