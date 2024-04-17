@@ -30,10 +30,10 @@
                         <a class="nav-link" href="#product">Produk</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about-us">About Us</a>
+                        <a class="nav-link" href="#about-us">Tentang Kami</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact Us</a>
+                        <a class="nav-link" href="#contact">Kontak Kami</a>
                     </li>
                 </ul>
             </div>
@@ -99,7 +99,7 @@
                 <div class="col-sm-6 mt-3">
                     <div id="contact"></div>
                     <div class="mb-3">
-                        <span style="font-weight: bold;">Contact & Address</span>
+                        <span style="font-weight: bold;">Kontak & Alamat</span>
                     </div>
                     <ul>
                         <li>
@@ -138,6 +138,8 @@
         function createDiv(data)
         {
 
+            var msg = data.link + encodeURI("Halo DSTORE,\n\nSaya ingin membeli " + data.title + ".\nApakah ini tersedia ?");
+
             listProduct = document.getElementById('list-procuct');
 
             let product = document.createElement('div');
@@ -170,7 +172,7 @@
 
             let btn = document.createElement('a');
             btn.className = 'btn btn-primary';
-            btn.href = 'https://wa.me/6285956599709?text=Halo%20DSTORE%2C%0A%0ASaya%20ingin%20membeli%20' + encodeURI(data.title) + '.%0AApakah%20ini%20tersedia%20%3F';
+            btn.href = msg;
             btn.target = '_blank';
             btn.textContent = 'Beli Sekarang';
             cardBodyDiv.appendChild(btn);
